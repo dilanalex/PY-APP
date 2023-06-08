@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
+#This API Test is only for learning purposes about python and Django
 class ApiTest(models.Model):
     task = models.CharField(max_length = 180)
     timestamp = models.DateTimeField(auto_now_add = True, auto_now = False, blank = True)
