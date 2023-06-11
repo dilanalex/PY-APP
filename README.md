@@ -24,7 +24,7 @@ Python 3.9.6 </br>
 <h1>Some Importnant Commands</h1>
 py -3 -m venv .venv
 
-python manage.py createsuperuser </br>
+python manage.py createsuperuser  - created super user, root/root</br>
 
 python manage.py migrate</br>
 python manage.py makemigrations</br>
@@ -39,3 +39,10 @@ https://www.educative.io/courses/django-admin-web-developers/RLPEYWRpDPV
 
 <h2>Run this command for the data migrations </br>
 python createFakeData.py
+
+<h1>Avaialble APIs</h1>
+
+  api_test/ - Learning purposes
+  scoreboard/ - Score Board of the League
+  team/ - Get All Team Information
+  team/<int:team_id>/ - Team by Specific Team ID

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
 # Create your models here.
 #This API Test is only for learning purposes about python and Django
@@ -50,5 +51,56 @@ class Game(models.Model):
 
     def __str__(self):
         return 'Game # %s' % (self.id)
+    
+class Coach(models.Model):
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return 'Name : %s %s' % (self.user.first_name, self.user.last_name)
+
+class Role(models.Model):
+    COACH = 'COACH'
+    PLAYER = 'PLAYER'
+    ADMIN = 'ADMIN'
+
+    ROLE_TYPES = [
+        (COACH, 'Coach'),
+        (PLAYER, 'Player'),
+        (ADMIN, 'Admin'),
+    ]
+    type = models.CharField(
+        max_length=10,
+        choices=ROLE_TYPES,
+        default=PLAYER,
+        verbose_name='type of role'
+    )
+
+    def __str__(self):
+        return str(self.type)
+        # return 'Type : %s, Id : %s' % (self.type, self.id)
+
+    def get_id(self):
+        return str(self.id)
+
+class User_Role(models.Model):
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    role = models.ForeignKey(Role, on_delete=models.CASCADE)
+    is_logged_in = models.BooleanField(default=False)
+
+    def __str__(self):
+        return str(self.id)
+        # return 'User : %s, Role : %s' % (self.user.username, self.role.type)
+
+class Player(models.Model):
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    height = models.IntegerField()
+
+    def __str__(self):
+        return 'Name : %s , Height : %s' % (self.user.first_name, self.height)
+
+
+
 
 

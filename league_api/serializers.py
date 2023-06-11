@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import ApiTest,Game
+from .models import *
 class ApiTestSerializer(serializers.ModelSerializer):
     class Meta:
         model = ApiTest
@@ -7,3 +7,7 @@ class ApiTestSerializer(serializers.ModelSerializer):
     class Meta:
         model = Game
         fields = ["host", "guest"]
+    class Meta:
+        model = Team
+        fields = ["name"]
+    
